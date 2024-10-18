@@ -37,5 +37,19 @@ def viewbook(request, bookId):
  elif bookId == book2["id"]:
    book = book2
  return render(request, 'bookmodule/one_book.html',{"book":book})
+
+
 def aboutus(request):
  return render(request, 'bookmodule/aboutus.html')
+
+def links(request):
+  return render(request, 'bookmodule/html5/links.html')
+
+def text_format(request):
+  return render(request, 'bookmodule/html5/text.html')
+
+def listing(request):
+  return render(request, 'bookmodule/html5/listing.html')
+
+def tables(request):
+  return render(request, 'bookmodule/html5/tables.html')

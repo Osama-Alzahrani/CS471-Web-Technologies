@@ -1,0 +1,50 @@
+.link{
+    width: 100%;
+    text-align: center;
+    display: block;
+    padding: 1vw;
+}
+
+#open-new{
+    color: red;
+    background-color:aquamarine;
+}
+
+#open-same{
+    color: red;
+    background-color:darkslategray;
+}
+
+#open-same2{
+    color: white;
+    background-color:black;
+}
+
+.link:visited{
+    color: chartreuse;
+}
+
+.link:hover{
+    scale:1.1;
+}
+
+.title{
+    color: green;
+    width: 100%;
+    background-color: bisque;
+}
+table, .table-1 th, .table-1 td  {
+    border: 1px solid black;
+}
+ .table-2 th, .table-2 td  {
+    border: 1px solid black;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.table-2{
+    border-collapse: collapse;
+}
+
+table {
+    text-align: center;
+}
