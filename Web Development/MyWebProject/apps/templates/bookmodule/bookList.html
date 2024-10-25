@@ -1,0 +1,57 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} Book List {% endblock title %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}"> <!-- include css file -->
+
+<style>
+ .searchForm{
+ margin-top: 20px;
+ }
+ button {
+ color: #fff;
+ background-color: #17a2b8;
+ border-color: #17a2b8;
+ border: none;
+ padding: 16px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ margin: 4px 2px;
+ transition-duration: 0.4s;
+ cursor: pointer; /* hand pointer */
+}
+ button:hover {
+ background-color: green;
+ color: white;
+ }
+
+.table-1 td{
+    padding: 1vw;
+}
+</style>
+{% endblock stylesheets %}
+{% block content %}
+
+<p class="title" style="font-size: 20px;"> List of Books</p>
+
+<table class="table-1">
+    <tr>
+       <th>ID</th> 
+       <th>title</th>
+       <th>author</th>
+    </tr>
+{% for book in books %}
+    <tr>
+        <td>{{ book.id }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+    </tr>
+
+
+
+{% endfor %}
+</table>
+
+{% endblock content %}
