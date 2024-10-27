@@ -42,15 +42,13 @@
        <th>title</th>
        <th>author</th>
     </tr>
+
 {% for book in books %}
     <tr>
         <td>{{ book.id }}</td>
         <td>{{ book.title }}</td>
         <td>{{ book.author }}</td>
     </tr>
-
-
-
 {% endfor %}
 </table>
 
