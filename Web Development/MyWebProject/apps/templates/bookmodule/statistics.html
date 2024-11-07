@@ -1,0 +1,12 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} My First Index HTML Page {% endblock title %}
+{% block content %}
+<h1 style="color: blue;">Statistics of the books</h1> <!-- add inline css -->
+
+<p>Total books: {{ data.Count }} </p>
+<p>Sum of prices: {{ data.Sum }} </p>
+<p>average book price: {{ data.Average }} </p>
+<p>maximum book price: {{ data.Max }} </p>
+<p>minimum book price: {{ data.Min }} </p>
+{% endblock content %}

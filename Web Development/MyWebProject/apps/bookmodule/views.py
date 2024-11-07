@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Book
+from django.db.models import Q
+from django.db.models import Count, Min, Max, Sum, Avg
 
 
 def oldindex (request):
@@ -82,7 +84,7 @@ def search(request):
 
 
 def create(request):
-  mybook = Book(title = 'Continuous Delivery', author = 'J.Humble and D. Farley', edition = 1)
+  mybook = Book(title = 'Continuous Delivery', author = 'J.Humble and D. Farley',price=50.0, edition = 1)
   mybook.save()
   return HttpResponse('Book created successfully')
 
@@ -97,3 +99,29 @@ def complex_query(request):
     return render(request, 'bookmodule/bookList.html', {'books':mybooks})
   else:
     return render(request, 'bookmodule/index.html')
+
+def lte_fifty(request):
+  
+  mybooks = Book.objects.filter(Q(price__lte = 50))
+  return render(request, 'bookmodule/bookList.html', {'books':mybooks})
+
+def editions_task(request):
+  mybooks = Book.objects.filter(Q(edition__gt = 2) & (Q(title__contains = "an") | Q(author__contains = "an"))) #Since my authors and title doesn't contain qu : |
+  return render(request, 'bookmodule/bookList.html', {'books':mybooks})
+
+def no_editions_higher(request):
+  mybooks = Book.objects.filter(~(Q(edition__gt = 2) & (Q(title__contains = "an") | Q(author__contains = "an")))) #Since my authors and title doesn't contain qu : |
+  return render(request, 'bookmodule/bookList.html', {'books':mybooks})
+
+def order_books(request):
+  mybooks = Book.objects.order_by('title')
+  return render(request, 'bookmodule/bookList.html', {'books':mybooks})
+
+def aggregation(request):
+  agg1 = Sum('price' , default=0)
+  agg2 = Avg('price' , default=0)
+  agg3 = Max('price' , default=0)
+  agg4 = Min('price' , default=0)
+  query = Book.objects.aggregate(Sum = agg1, Average=agg2, Max=agg3, Min=agg4, Count=Count('id'))
+
+  return render(request, 'bookmodule/statistics.html', {'data':query})
