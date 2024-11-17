@@ -8,7 +8,7 @@
  .searchForm{
  margin-top: 20px;
  }
- .button {
+ button {
  color: #fff;
  background-color: #17a2b8;
  border-color: #17a2b8;
@@ -22,7 +22,7 @@
  transition-duration: 0.4s;
  cursor: pointer; /* hand pointer */
 }
- .button:hover {
+ button:hover {
  background-color: green;
  color: white;
  }
@@ -34,27 +34,23 @@
 {% endblock stylesheets %}
 {% block content %}
 
-<p class="title" style="font-size: 20px;"> List of Books</p>
-<a class="button" href="{% url "books.lab9_addbook" %}">ِAdd new book</a>
-<table class="table-1">
-    <tr>
-       <th>ID</th> 
-       <th>title</th>
-       <th>author</th>
-       <th></th>
-       <th></th>
-    </tr>
+<p class="title" style="font-size: 20px;"> Create new Book</p>
 
-{% for book in books %}
-    <tr>
-        <td>{{ book.id }}</td>
-        <td>{{ book.title }}</td>
-        <td>{{ book.author }}</td>
-        <td><a class="button" href="{% url "books.lab9_editbook" book.id %}">Update</a></td>
-        <td><a class="button" href="{% url "books.lab9_deletebook" book.id %}">Delete</a></td>
-        
-    </tr>
-{% endfor %}
-</table>
+<form method = "post">
+{% csrf_token %}
+<label for="title">Title</label>
+<input type="text" id ="title" name="title" />
+<br>
+<label for="price">Price (with decimal point)</label>
+<input type="number" id="price" name="price" step="any" />
+<br>
+<label for="edition">Edition</label>
+<input type="number" id="edition" name="edition" />
+<br>
+<label for="author">Author</label>
+<input type="text" id ="author" name="author" />
+<br>
+<button type="submit">Add Book</button>
+</form>
 
 {% endblock content %}

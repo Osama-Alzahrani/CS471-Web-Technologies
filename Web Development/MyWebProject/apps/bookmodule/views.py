@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Book
 from django.db.models import Q
@@ -125,3 +125,40 @@ def aggregation(request):
   query = Book.objects.aggregate(Sum = agg1, Average=agg2, Max=agg3, Min=agg4, Count=Count('id'))
 
   return render(request, 'bookmodule/statistics.html', {'data':query})
+
+def lab9_list(request):
+  books = Book.objects.all()
+  return render(request, 'bookmodule/bookList.html', {'books':books})
+
+def lab9_addbook(request):
+  if request.method=='POST':
+    title=request.POST.get('title')
+    price=request.POST.get('price')
+    edition=request.POST.get('edition')
+    author=request.POST.get('author')
+    obj = Book(title=title, price = float(price), edition = edition, author = author)
+    obj.save()
+    return redirect('books.lab9_list')
+  return render(request, 'bookmodule/createBook.html')
+
+def lab9_editbook(request, bid):
+  obj = Book.objects.get(id = bid)
+  if request.method == 'POST':
+    title=request.POST.get('title')
+    price=request.POST.get('price')
+    edition=request.POST.get('edition')
+    author=request.POST.get('author')
+    obj.title = title
+    obj.price = float(price)
+    obj.edition = int(edition)
+    obj.author = author
+    obj.save()
+    return redirect('books.lab9_list')
+  return render(request, "bookmodule/updateBook.html", {'book':obj})
+
+def lab9_deletebook(request, bid):
+  obj = Book.objects.get(id = bid)
+  if request.method=='POST':
+    obj.delete()
+    return redirect('books.lab9_list')
+  return render(request, "bookmodule/deleteBook.html", {'obj':obj})

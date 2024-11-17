@@ -21,4 +21,8 @@ urlpatterns = [
  path('lab8/task3', views.no_editions_higher, name="books.no_editions_higher"),
  path('lab8/task4', views.order_books, name="books.order_books"),
  path('lab8/task5', views.aggregation, name="books.aggregation"),
+ path('lab9_part1/listbooks', views.lab9_list, name="books.lab9_list"),
+ path('lab9_part1/addbook', views.lab9_addbook, name="books.lab9_addbook"),
+ path('lab9_part1/editbook/<bid>', views.lab9_editbook, name="books.lab9_editbook"),
+ path('lab9_part1/deletebook/<bid>', views.lab9_deletebook, name="books.lab9_deletebook"),
 ]
