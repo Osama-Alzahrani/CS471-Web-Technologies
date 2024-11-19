@@ -25,4 +25,6 @@ urlpatterns = [
  path('lab9_part1/addbook', views.lab9_addbook, name="books.lab9_addbook"),
  path('lab9_part1/editbook/<bid>', views.lab9_editbook, name="books.lab9_editbook"),
  path('lab9_part1/deletebook/<bid>', views.lab9_deletebook, name="books.lab9_deletebook"),
+ path('lab9_part2/addbook', views.lab9_2_addbook, name="books.lab9_2_addbook"),
+ path('lab9_part2/editbook/<bid>', views.lab9_2_editbook, name="books.lab9_2_editbook"),
 ]

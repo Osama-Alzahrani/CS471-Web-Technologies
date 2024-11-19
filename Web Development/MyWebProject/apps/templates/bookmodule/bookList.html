@@ -36,6 +36,7 @@
 
 <p class="title" style="font-size: 20px;"> List of Books</p>
 <a class="button" href="{% url "books.lab9_addbook" %}">ِAdd new book</a>
+<a class="button" href="{% url "books.lab9_2_addbook" %}">ِAdd new book v2</a>
 <table class="table-1">
     <tr>
        <th>ID</th> 
@@ -50,7 +51,7 @@
         <td>{{ book.id }}</td>
         <td>{{ book.title }}</td>
         <td>{{ book.author }}</td>
-        <td><a class="button" href="{% url "books.lab9_editbook" book.id %}">Update</a></td>
+        <td><a class="button" href="{% url "books.lab9_editbook" book.id %}">Update</a><a class="button" href="{% url "books.lab9_2_editbook" book.id %}">Update v2</a></td>
         <td><a class="button" href="{% url "books.lab9_deletebook" book.id %}">Delete</a></td>
         
     </tr>

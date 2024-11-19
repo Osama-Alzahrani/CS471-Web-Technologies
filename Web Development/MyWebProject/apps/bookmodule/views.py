@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Book
 from django.db.models import Q
 from django.db.models import Count, Min, Max, Sum, Avg
+from .forms import BookForm
 
 
 def oldindex (request):
@@ -162,3 +163,24 @@ def lab9_deletebook(request, bid):
     obj.delete()
     return redirect('books.lab9_list')
   return render(request, "bookmodule/deleteBook.html", {'obj':obj})
+
+def lab9_2_addbook(request):
+  if request.method=='POST':
+    form = BookForm(request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('books.lab9_list')
+  else: 
+    form = BookForm(None)
+  return render(request, "bookmodule/forms/addBook.html", {'form':form})
+
+def lab9_2_editbook(request, bid):
+  obj = Book.objects.get(id = bid)
+  if request.method=='POST':
+    form = BookForm(request.POST,instance=obj)
+    if form.is_valid():
+      form.save()
+      return redirect('books.lab9_list')
+  else: 
+    form = BookForm(instance = obj)
+  return render(request, "bookmodule/forms/update.html", {'form':form})
