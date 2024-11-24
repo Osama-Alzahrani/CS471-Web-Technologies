@@ -18,6 +18,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [( os.path.join(BASE_DIR, "apps/static"))]
 
+# set up media root
+# this folder should be outside your app directory
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/

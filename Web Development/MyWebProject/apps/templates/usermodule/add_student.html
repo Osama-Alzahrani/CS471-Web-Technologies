@@ -1,0 +1,24 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} Add Student {% endblock title %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'css/myStyle.css' %}"> <!-- include css file -->
+{% endblock stylesheets %}
+
+
+{% block content %}
+<div class="main center">
+
+
+
+    <p class="title" style="font-size: 20px;"> Add Student </p>
+
+
+
+    <form method = "post" style="flex-direction: column;">
+        {% csrf_token %}
+        {{form.as_p}}
+        <p style="width: 100%;" class="text-center"><button type="submit">Add</button></p>
+    </form>
+</div>
+{% endblock content %}

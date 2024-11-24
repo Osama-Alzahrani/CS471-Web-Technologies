@@ -9,7 +9,7 @@
 
 
 {% block content %}
-<a href="{% url 'user.add_student' %}" class="sticky text-center" style="font-size: 20px; width: 100%; color: azure; background-color: #7181d8; height: 5vw; text-decoration: none;">
+<a href="{% url 'user.multi_add_student' %}" class="sticky text-center" style="font-size: 20px; width: 100%; color: azure; background-color: #7181d8; height: 5vw; text-decoration: none;">
     Add Student
 </a>
 
@@ -33,14 +33,20 @@
 
     {% for user in users %}
         <tr>
-            <td>{{ user.name }}</td>
+            <td class="text-center">{{ user.name }}</td>
             <td class="text-center">{{ user.age }}</td>
-            <td>{{ user.address.city }}</td>
-            <td class="center padding">
-                <a href="{% url 'user.update_student' user.id %}" class="btn success">Update</a>
+            <td class="text-center">
+                <ul>
+                    {% for city in user.address.all %}
+                        <span>{{city}} {% if not forloop.last %}, {% endif %} </span> 
+                    {% endfor %}
+                </ul>
             </td>
             <td class="text-center">
-                <form action="{% url 'user.delete_student' user.id %}" method="post" id="{{user.id}}">
+                <a href="{% url 'user.multi_update_student' user.id %}" class="btn success">Update</a>
+            </td>
+            <td class="text-center">
+                <form action="{% url 'user.multi_delete_student' user.id %}" method="post" id="{{user.id}}">
                     {% csrf_token %}
                     <button type="button" id="submitButton" class="btn danger" user_name="{{ user.name }}" form-id="{{ user.id }}">Delete</button>
                 </form>

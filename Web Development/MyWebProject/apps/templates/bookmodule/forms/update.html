@@ -7,9 +7,15 @@
 {% block content %}
 
 <p class="title" style="font-size: 20px;"> Updating a Book </p>
-<form method = "post">
+<form method = "post" enctype="multipart/form-data">
 {% csrf_token %}
-{{form}}
+{{form.as_p}}
+{% if form.instance.coverPage and form.instance.coverPage.url %}
+<p>
+  <label>Current Cover Page:</label>
+  <img src="{{ form.instance.coverPage.url }}" alt="Cover Page" style="max-width: 200px; max-height: 200px;">
+</p>
+{% endif %}
 <button type="submit">Update Book</button>
 </form>
 

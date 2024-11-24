@@ -165,20 +165,22 @@ def lab9_deletebook(request, bid):
   return render(request, "bookmodule/deleteBook.html", {'obj':obj})
 
 def lab9_2_addbook(request):
-  if request.method=='POST':
-    form = BookForm(request.POST)
-    if form.is_valid():
-      form.save()
-      return redirect('books.lab9_list')
-  else: 
-    form = BookForm(None)
-  return render(request, "bookmodule/forms/addBook.html", {'form':form})
+    if request.method == 'POST':
+        form = BookForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save() 
+            return redirect('books.lab9_list')
+    else:
+        form = BookForm()
+    return render(request, "bookmodule/forms/addBook.html", {'form': form})
 
 def lab9_2_editbook(request, bid):
   obj = Book.objects.get(id = bid)
   if request.method=='POST':
-    form = BookForm(request.POST,instance=obj)
+    form = BookForm(request.POST, request.FILES, instance=obj)
     if form.is_valid():
+      print("Form is valid")
+      print("File data:", request.FILES.get('coverPage'))
       form.save()
       return redirect('books.lab9_list')
   else: 
