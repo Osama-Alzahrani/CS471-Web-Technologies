@@ -186,3 +186,18 @@ def lab9_2_editbook(request, bid):
   else: 
     form = BookForm(instance = obj)
   return render(request, "bookmodule/forms/update.html", {'form':form})
+
+def lab12_task1(request):
+  return render(request, "bookmodule/js/task1.html")
+
+def lab12_task2(request):
+  return render(request, "bookmodule/js/task2.html")
+
+def lab12_task3(request):
+  return render(request, "bookmodule/js/task3.html")
+
+def lab12_task4(request):
+  return render(request, "bookmodule/js/task4.html")
+
+def lab12_task5(request):
+  return render(request, "bookmodule/js/task5.html")

@@ -1,0 +1,35 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} My First Index HTML Page {% endblock title %}
+{% block content %}
+<p id = "myText"> This is my Text</p>
+
+<button onclick="textChanger()">Change Text</button>
+<button onclick="colorChanger()">Change Color</button>
+<button onclick="toggleText()">Toggle Text</button>
+{% endblock content %}
+{% block javascripts %}
+<script>
+
+let toggle = true;
+function textChanger(){
+    text = document.getElementById("myText");
+    text.innerText = "Text is changed";
+}
+function colorChanger(){
+    text = document.getElementById("myText");
+    text.style.backgroundColor = "red";
+}
+function toggleText(){
+    text = document.getElementById("myText");
+    if (toggle){
+        text.style.visibility = 'hidden';
+        toggle = false;     
+    }else{
+        text.style.visibility = 'visible';
+        toggle = true;
+    }
+    
+}
+</script>
+{% endblock javascripts %}

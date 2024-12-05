@@ -1,0 +1,20 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} My First Index HTML Page {% endblock title %}
+{% block content %}
+<p id = "myText" onmouseover="changeStyle()" onmouseout="defalut()"> This is my Text</p>
+{% endblock content %}
+{% block javascripts %}
+<script>
+function changeStyle(){
+    text = document.getElementById("myText");
+    text.style.backgroundColor = "red";
+    text.style.fontSize = "20px";
+}
+function defalut(){
+    text = document.getElementById("myText");
+    text.style.backgroundColor = "transparent";
+    text.style.fontSize = "14px";
+}
+</script>
+{% endblock javascripts %}
