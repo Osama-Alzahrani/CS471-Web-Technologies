@@ -1,0 +1,20 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} Register {% endblock title %}
+{% block content %}
+
+<p class="title" style="font-size: 20px;"> login</p>
+
+<form role="form" method="post" action="">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" required><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required><br>
+    <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="{% url 'user.register' %}">Register here</a></p>
+</form>
+
+
+{% endblock content %}

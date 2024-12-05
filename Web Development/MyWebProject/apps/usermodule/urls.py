@@ -10,4 +10,7 @@ urlpatterns = [
     path('student/multi/delete_student/<int:SID>', views.multi_delete_student, name="user.multi_delete_student"),
     path('student/multi/update_student/<int:SID>', views.multi_update_student, name="user.multi_update_student"),
     path('student/multi', views.multi_view_students, name="user.multi_view_students"),
+    path('register/', views.register, name="user.register"),
+    path('login/', views.loginView, name="user.loginView"),
+    path("logout/", views.logoutUser, name="user.logout"),
 ]

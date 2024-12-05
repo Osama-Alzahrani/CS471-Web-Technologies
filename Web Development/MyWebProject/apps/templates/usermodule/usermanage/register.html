@@ -1,0 +1,15 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} Register {% endblock title %}
+{% block content %}
+
+<p class="title" style="font-size: 20px;"> Regsiter</p>
+
+<form method="post" action="">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" name="register">تسجيل </button>
+</form>
+
+
+{% endblock content %}
